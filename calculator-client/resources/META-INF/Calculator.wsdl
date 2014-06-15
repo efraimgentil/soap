@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://calculator/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://calculator" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://calculator">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://calculator/xsd">
+            <xs:element name="minus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="i" type="xs:double"/>
+                        <xs:element minOccurs="0" name="j" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="minusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="plus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="i" type="xs:double"/>
+                        <xs:element minOccurs="0" name="j" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="plusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="divide">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="i" type="xs:double"/>
+                        <xs:element minOccurs="0" name="j" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="divideResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sum">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="i" type="xs:double"/>
+                        <xs:element minOccurs="0" name="j" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sumResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="sumRequest">
+        <wsdl:part name="parameters" element="ns:sum"/>
+    </wsdl:message>
+    <wsdl:message name="sumResponse">
+        <wsdl:part name="parameters" element="ns:sumResponse"/>
+    </wsdl:message>
+    <wsdl:message name="divideRequest">
+        <wsdl:part name="parameters" element="ns:divide"/>
+    </wsdl:message>
+    <wsdl:message name="divideResponse">
+        <wsdl:part name="parameters" element="ns:divideResponse"/>
+    </wsdl:message>
+    <wsdl:message name="plusRequest">
+        <wsdl:part name="parameters" element="ns:plus"/>
+    </wsdl:message>
+    <wsdl:message name="plusResponse">
+        <wsdl:part name="parameters" element="ns:plusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="minusRequest">
+        <wsdl:part name="parameters" element="ns:minus"/>
+    </wsdl:message>
+    <wsdl:message name="minusResponse">
+        <wsdl:part name="parameters" element="ns:minusResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="CalculatorPortType">
+        <wsdl:operation name="sum">
+            <wsdl:input message="tns:sumRequest" wsaw:Action="urn:sum"/>
+            <wsdl:output message="tns:sumResponse" wsaw:Action="urn:sumResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="divide">
+            <wsdl:input message="tns:divideRequest" wsaw:Action="urn:divide"/>
+            <wsdl:output message="tns:divideResponse" wsaw:Action="urn:divideResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="plus">
+            <wsdl:input message="tns:plusRequest" wsaw:Action="urn:plus"/>
+            <wsdl:output message="tns:plusResponse" wsaw:Action="urn:plusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="minus">
+            <wsdl:input message="tns:minusRequest" wsaw:Action="urn:minus"/>
+            <wsdl:output message="tns:minusResponse" wsaw:Action="urn:minusResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CalculatorSoap11Binding" type="tns:CalculatorPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="sum">
+            <soap:operation soapAction="urn:sum" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="divide">
+            <soap:operation soapAction="urn:divide" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="plus">
+            <soap:operation soapAction="urn:plus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="minus">
+            <soap:operation soapAction="urn:minus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="CalculatorSoap12Binding" type="tns:CalculatorPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="sum">
+            <soap12:operation soapAction="urn:sum" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="divide">
+            <soap12:operation soapAction="urn:divide" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="plus">
+            <soap12:operation soapAction="urn:plus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="minus">
+            <soap12:operation soapAction="urn:minus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="CalculatorHttpBinding" type="tns:CalculatorPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="sum">
+            <http:operation location="sum"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="divide">
+            <http:operation location="divide"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="plus">
+            <http:operation location="plus"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="minus">
+            <http:operation location="minus"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Calculator">
+        <wsdl:port name="CalculatorHttpSoap11Endpoint" binding="tns:CalculatorSoap11Binding">
+            <soap:address location="http://localhost:8080/axis2/services/Calculator"/>
+        </wsdl:port>
+        <wsdl:port name="CalculatorHttpSoap12Endpoint" binding="tns:CalculatorSoap12Binding">
+            <soap12:address location="http://localhost:8080/axis2/services/Calculator"/>
+        </wsdl:port>
+        <wsdl:port name="CalculatorHttpEndpoint" binding="tns:CalculatorHttpBinding">
+            <http:address location="http://localhost:8080/axis2/services/Calculator"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
