@@ -1,7 +1,7 @@
 package br.com.efraimgentil.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "contas")
-public class Contas implements Serializable {
+public class Conta implements Serializable {
 	
 	private static final long serialVersionUID = 8780565660960223925L;
 
@@ -29,9 +29,9 @@ public class Contas implements Serializable {
 	private Date dataPagamento;
 	private Double valorPago;
 	
-	public Contas() {	}
+	public Conta() {	}
 	
-	public Contas(Long id, String descricao, String cedente,
+	public Conta(Long id, String descricao, String cedente,
 			Date dataVencimento, Double valor, Date dataPagamento,
 			Double valorPago) {
 		super();
@@ -70,7 +70,7 @@ public class Contas implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Contas other = (Contas) obj;
+		Conta other = (Conta) obj;
 		if (cedente == null) {
 			if (other.cedente != null)
 				return false;
